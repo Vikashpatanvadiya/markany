@@ -27,6 +27,8 @@ async function request(path, options = {}) {
   const token = getToken()
   const headers = {
     'Content-Type': 'application/json',
+    // Skip ngrok's browser-interstitial so API calls return JSON, not HTML.
+    'ngrok-skip-browser-warning': 'true',
     ...(token ? { Authorization: `Bearer ${token}` } : {}),
     ...(options.headers || {}),
   }
